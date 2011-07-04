@@ -1,12 +1,11 @@
-$puppet_manifests_main= "/etc/puppet/manifests/"
-$puppet_modules_dir= "/etc/puppet/modules/"
+# /etc/puppet/modules/lxc/manifests/init.pp
 
-class vm {
-
-    file { "${puppet_manifests_main}":
-        owner   => root,
-        group   => root,
-        mode    => 440,
-        source  => "puppet:///vm/init.pp",
-    }
+class lxc_host {
+	package {
+		["lxc",
+ 		"debootstrap",
+		"bridge-utils",
+		"dnsmasq"];
+			ensure => latest; 
+		}
 }

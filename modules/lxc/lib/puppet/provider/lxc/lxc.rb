@@ -17,6 +17,7 @@ Puppet::Type.type(:lxc).provide(:lxc) do
 	end
 
 	def start
+		create
 		lxc_start "-n", resource[:name], "-d"
 	end
 
