@@ -6,11 +6,19 @@
 #	master => "192.168.3.1",
 #	ensure => running,
 #
+#}
 
 # /etc/puppet/manifests/site.pp
 
-import "modules"
-import "nodes"
+#import "modules"
+#import "nodes"
+
+bridge { "br0":        
+       address => "192.168.3.1",
+       status => "up", 
+       ensure => up,
+}
+
 
 # The filebucket option allows for file backups to the server
 filebucket { main: server => 'puppetmaster1' }
