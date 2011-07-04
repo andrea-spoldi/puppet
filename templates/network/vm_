@@ -1,0 +1,13 @@
+auto lo
+iface lo inet loopback
+
+auto br0
+iface br0 inet static
+        address <%= ip %>
+        netmask 255.255.255.0
+        broadcast <%= broadcast %>
+        gateway <%= gateway %>
+        bridge_stp on
+        bridge_ports eth0 eth1
+        bridge_bridgeprio 60000
+        bridge_maxwait 30
