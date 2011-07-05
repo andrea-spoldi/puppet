@@ -15,8 +15,7 @@
 
 bridge { "br0":        
        address => "192.168.3.1",
-       status => "up", 
-       ensure => up,
+       ensure => "up",
 }
 
 

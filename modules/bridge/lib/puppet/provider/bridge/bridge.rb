@@ -8,7 +8,8 @@ Puppet::Type.type(:bridge).provide(:bridge) do
 		brctl "setfd", resource[:name], "0"
         end
         
-        def destroy
+        def delete
+		brctl "delbr", resource[:name]
 	end
 
 	def up
@@ -16,7 +17,8 @@ Puppet::Type.type(:bridge).provide(:bridge) do
 		ifconfig resource[:name], resource[:address], "up"
 	end
 
-	def stop
+	def down
+		ifconfig resource[:name], "down"
 	end
 
 	def exists?
