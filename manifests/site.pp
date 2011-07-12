@@ -10,13 +10,15 @@
 
 # /etc/puppet/manifests/site.pp
 
-#import "modules"
-#import "nodes"
+import "modules"
+import "nodes"
 
-bridge { "br0":        
-       address => "192.168.3.1",
-       ensure => "up",
+#notify{$servername:}
+
+node basenode {
+        notify{$servername:}
 }
+node default inherits basenode {}
 
 
 # The filebucket option allows for file backups to the server
