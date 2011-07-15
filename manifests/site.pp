@@ -18,7 +18,18 @@ import "nodes"
 node basenode {
         notify{$servername:}
 }
-node default inherits basenode {}
+node default inherits basenode {
+    include apache
+
+    $worker_ = mysqldblookup("$fqdn")
+    apache::vhost { $worker_:
+    port => 80,
+    docroot => "/var/www/$worker_",
+    ssl => false,
+    priority => 10,
+    serveraliases => "home.$worker_",
+}
+}
 
 
 # The filebucket option allows for file backups to the server
